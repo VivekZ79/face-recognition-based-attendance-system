@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - {{ username }}</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #4a4a7d;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #5c5c8a;
+            margin-top: 40px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #357ab8;
+        }
+
+        /* Notes list styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+
+        /* Back to Home link */
+        a {
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+            text-decoration: none;
+            color: #4a90e2;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: #357ab8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ username }}! Here are your notes:</h1>
+
+    <form method="POST">
+        <textarea name="note" rows="4" cols="50" placeholder="Write your note here..."></textarea><br>
+        <button type="submit">Add Note</button>
+    </form>
+
+    <h2>Your Notes:</h2>
+
+    <ul>
+        {% for note in notes %}
+        <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>
